@@ -62,6 +62,22 @@ script.
       // END DO NOT EDIT SECTION
   }
   function addToCart(title, productId, price) {
+      //GTAG - Publish eComm event - AddToCart
+      gtag("event", "add_to_cart", {
+              value: price,
+              currency: "AUD",
+              items: [
+              // If someone purchases more than one item, 
+              // you can add those items to the items array
+              {
+                item_id: productId,
+                item_name: title,
+                item_brand: "Brand_1"
+                price: price,
+                quantity: 1
+              }]
+          });
+  
       // BEGIN HINT: UTILIZE THESE VARIABLES WHEN CONSTRUCTING YOUR CORRESPONDING TIKTOK PIXEL EVENTS
       console.log("addToCart Function")
       console.log("title:" + " " + title);
@@ -80,6 +96,20 @@ script.
       // END DO NOT EDIT SECTION
   }
   function viewContent(title, productId, price) {
+      //GTAG - Publish eComm event - ViewContent
+      gtag("event", "view_item", {
+              value: price,
+              currency: "AUD",
+              items: [
+              // If someone purchases more than one item, 
+              // you can add those items to the items array
+              {
+                item_id: productId,
+                item_name: title,
+                item_brand: "Brand_1"
+                price: price
+              }]
+          });
       // BEGIN DO NOT EDIT SECTION
       alert("Mock Product Item Details Popup: "
       + "\\n" + "title: " + title
@@ -104,6 +134,21 @@ script.
       // END DO NOT EDIT SECTION
   }
   function initiateCheckout() {
+      //GTAG - Publish eComm event - InitiateCheckout
+      gtag("event", "begin_checkout", {
+              value: price,
+              currency: "AUD",
+              items: [
+              // If someone purchases more than one item, 
+              // you can add those items to the items array
+              {
+                item_id: productId,
+                item_name: title,
+                item_brand: "Brand_1"
+                price: price,
+                quantity: 1
+              }]
+          });
       var retVal = confirm("This is a pop up meant to be a mock initiate checkout step - clicking OK will assume that the correct payment information was entered by the customer. Purchase will then complete successfully. HINT: Clicking Cancel should not trigger any events");
       if (retVal === true) {
       // BEGIN DO NOT EDIT SECTION
@@ -116,6 +161,21 @@ script.
   }
   // HINT: This is the dedicated function for Complete Payment
   function completePayment() {
+    //GTAG - Publish eComm event - CompletePayment
+    gtag("event", "purchase", {
+            value: price,
+            currency: "AUD",
+            items: [
+            // If someone purchases more than one item, 
+            // you can add those items to the items array
+            {
+              item_id: productId,
+              item_name: title,
+              item_brand: "Brand_1"
+              price: price,
+              quantity: 1
+            }]
+        });
   // BEGIN DO NOT EDIT SECTION
   alert("Payment Completed - Purchase Successful")
   // END DO NOT EDIT SECTION
