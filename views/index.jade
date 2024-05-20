@@ -3,11 +3,11 @@ head
   title My Pers | Store
   //Google tag (gtag.js) -- START
   script(async src='https://www.googletagmanager.com/gtag/js?id=G-X8JT2JDNXR')
-    script.
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-X8JT2JDNXR');
+  script.
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X8JT2JDNXR');
   //Google tag (gtag.js) -- END
   
 .content
@@ -42,7 +42,7 @@ head
           .item-price-2 $199.99
           button(onclick="viewContent('Product 3','4098MD',199.99)") View Content Details
           button#add-to-cart-button-3(onclick="addToCart('Product 3','4098MD',199.99)") Add To Cart
-  button.checkout(onclick='initiateCheckout()') Initiate Checkout
+  button.checkout(onclick="initiateCheckout('Product 3','4098MD',199.99)") Initiate Checkout
   footer
 // BEGIN TIKTOK PIXEL EVENT FUNCTIONS SCRIPT SECTION
 script.
@@ -133,7 +133,7 @@ script.
       alert("Registration Complete");
       // END DO NOT EDIT SECTION
   }
-  function initiateCheckout() {
+  function initiateCheckout(title, productId, price) {
       //GTAG - Publish eComm event - InitiateCheckout
       gtag("event", "begin_checkout", {
               value: price,
@@ -152,7 +152,7 @@ script.
       var retVal = confirm("This is a pop up meant to be a mock initiate checkout step - clicking OK will assume that the correct payment information was entered by the customer. Purchase will then complete successfully. HINT: Clicking Cancel should not trigger any events");
       if (retVal === true) {
       // BEGIN DO NOT EDIT SECTION
-      completePayment();
+      completePayment(title, productId, price);
       } else {
       alert("Payment step cancelled!");
       return false;
@@ -160,7 +160,7 @@ script.
       // END DO NOT EDIT SECTION
   }
   // HINT: This is the dedicated function for Complete Payment
-  function completePayment() {
+  function completePayment(title, productId, price) {
     //GTAG - Publish eComm event - CompletePayment
     gtag("event", "purchase", {
             value: price,
